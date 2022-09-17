@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { useTailwind } from "tailwind-rn/dist";
 import {
   CompositeNavigationProp,
+  RouteProp,
   useNavigation,
 } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -13,6 +14,8 @@ import { Image, Input } from "@rneui/themed";
 import { useQuery } from "@apollo/client";
 import { GET_CUSTOMERS } from "../graphql/queries";
 import CustomerCard from "../components/CustomerCard";
+
+type CustomersScreenRouteProp = RouteProp<RootStackParamList, "Main">;
 
 export type CustomerScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList, "Customers">,
@@ -43,9 +46,9 @@ const CustomersScreen = () => {
         placeholder="Search by Customer"
         value={input}
         onChangeText={setInput}
-        containerStyle={tw("bg-white py-10 pb-0 px-20")}
+        containerStyle={tw("bg-white pt-5 px-10")}
       />
-      {data?.getCustomers.map(
+      {data?.getCustomers.filter((customer: CustomerList) => customer.value.name.includes(input)).map(
         ({ name: ID, value: { email, name } }: CustomerResponse) => {
           <CustomerCard key={ID} email={email} name={name} userId={ID} />;
         }
