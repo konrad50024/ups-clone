@@ -1,0 +1,18 @@
+type Order {
+  carrier: String
+  createdAt: Date
+  shippingCost: Int
+  trackingId: String
+  Address: String
+  City: String
+  Lat: Float
+  Lng: Float
+
+}
+
+type Query {
+  getOrders: JSON
+    @rest(
+      endpoint: "https://ups-clone-8f742-default-rtdb.europe-west1.firebasedatabase.app/orders.json"
+    )
+}
