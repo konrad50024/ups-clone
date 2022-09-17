@@ -52,6 +52,21 @@
   padding-right: 2.5rem
 }
 
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem
+}
+
 .pt-5 {
   padding-top: 1.25rem
 }
@@ -60,10 +75,19 @@
   padding-bottom: 0px
 }
 
+.pb-5 {
+  padding-bottom: 1.25rem
+}
+
 .uppercase {
   text-transform: uppercase
 }
 
 .capitalize {
   text-transform: capitalize
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity))
 }

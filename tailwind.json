@@ -69,6 +69,24 @@
 			"paddingRight": 40
 		}
 	},
+	"px-20": {
+		"style": {
+			"paddingLeft": 80,
+			"paddingRight": 80
+		}
+	},
+	"py-5": {
+		"style": {
+			"paddingTop": 20,
+			"paddingBottom": 20
+		}
+	},
+	"py-10": {
+		"style": {
+			"paddingTop": 40,
+			"paddingBottom": 40
+		}
+	},
 	"pt-5": {
 		"style": {
 			"paddingTop": 20
@@ -79,6 +97,11 @@
 			"paddingBottom": 0
 		}
 	},
+	"pb-5": {
+		"style": {
+			"paddingBottom": 20
+		}
+	},
 	"uppercase": {
 		"style": {
 			"textTransform": "uppercase"
@@ -87,6 +110,12 @@
 	"capitalize": {
 		"style": {
 			"textTransform": "capitalize"
+		}
+	},
+	"text-red-500": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(239 68 68 / var(--tw-text-opacity))"
 		}
 	}
 }

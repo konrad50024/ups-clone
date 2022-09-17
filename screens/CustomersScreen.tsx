@@ -1,6 +1,5 @@
-import { View, Text, ScrollView, ActivityIndicator } from "react-native";
+import { ScrollView, ActivityIndicator } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useTailwind } from "tailwind-rn/dist";
 import {
   CompositeNavigationProp,
@@ -11,6 +10,9 @@ import { RootStackParamList } from "../navigator/RootNavigator";
 import { TabParamList } from "../navigator/TabNavigator";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { Image, Input } from "@rneui/themed";
+import { useQuery } from "@apollo/client";
+import { GET_CUSTOMERS } from "../graphql/queries";
+import CustomerCard from "../components/CustomerCard";
 
 export type CustomerScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList, "Customers">,
@@ -21,15 +23,16 @@ const CustomersScreen = () => {
   const tw = useTailwind();
   const navigation = useNavigation();
   const [input, setInput] = useState<string>("");
+  const { loading, error, data } = useQuery(GET_CUSTOMERS);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, []);
+  }, [data]);
 
   return (
-    <ScrollView style={{ backgroundColor: "#59C1CC" }}>
+    <ScrollView style={{ backgroundColor: "#59C1CC",  flex: 1}}>
       <Image
         source={{ uri: "https://links.papareact.com/3jc" }}
         containerStyle={tw("w-full h-64")}
@@ -40,8 +43,13 @@ const CustomersScreen = () => {
         placeholder="Search by Customer"
         value={input}
         onChangeText={setInput}
-        containerStyle={tw("bg-white pt-5 pb-0 px-10")}
+        containerStyle={tw("bg-white py-10 pb-0 px-20")}
       />
+      {data?.getCustomers.map(
+        ({ name: ID, value: { email, name } }: CustomerResponse) => {
+          <CustomerCard key={ID} email={email} name={name} userId={ID} />;
+        }
+      )}
     </ScrollView>
   );
 };
